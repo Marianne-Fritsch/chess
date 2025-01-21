@@ -44,12 +44,16 @@ class Piece():
                         return ((a.x-b.x)/abs(a.x-b.x), (a.y-b.y)/abs(a.y-b.y))
                     direction = vect_unit(case_souhaitee, self.position)
                     boolean = True
-                    for k in range(BOARD_SIZE):
-                        pass
-
+                    for k in range(1,abs(case_souhaitee.x - self.position.x)):
+                        if statut(self.position + k * direction) != "empty":
+                            boolean = False
+                    return boolean
 
         if self.name == "knight":
-            pass
+            
+            cases_possibles = {self.position + (1,2), self.position + (2,1), self.position + (-1,2), self.position + (2,-1), self.position + (1,-2), self.position + (-2,1), self.position + (-1,-2), self.position + (-2,-1)}
+            
+
         if self.name == "rook":
             pass
         if self.name == "queen":
