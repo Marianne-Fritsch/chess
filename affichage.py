@@ -1,5 +1,7 @@
+"""
+
 import pygame as pg
-from board import * # C'est risqué mais j'ai besoin de CASE_SIZE
+from board import CASE_SIZE
 
 black_pawn = pg.image.load("media/noir_pion.png") # J'ai rajouté les pg.image.load, askip ça permet de convertir l'image en une surface utilisable par pygame
 BLACK_PAWN = pg.transform.scale(black_pawn, (CASE_SIZE, CASE_SIZE))
@@ -37,5 +39,5 @@ WHITE_QUEEN = pg.transform.scale(white_queen, (CASE_SIZE, CASE_SIZE))
 white_king = pg.image.load("media/blanc_roi.png")
 WHITE_KING = pg.transform.scale(white_king, (CASE_SIZE, CASE_SIZE))
 
-
+"""
 
