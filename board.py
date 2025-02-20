@@ -1,19 +1,25 @@
 from random import randint
-import pygame as pg # J'ai créé un environnement conda avec python 3.11 pour importer pygame (je comprends rien aux environnements aled T_T)
+import pygame as pg  # J'ai créé un environnement conda avec python 3.11 pour importer pygame (je comprends rien aux environnements aled T_T)
 import collections
 from collections import namedtuple
 from collections import deque
 
-#PARAMETRES
-WHITE = (240, 217, 181) # (Adam) J'ai modifié les couleurs noir et blanc, je pense q'il vaut mieux que ce soit les couleurs des pièces et pas de l'échiquier.
-BLACK = (121,85,61) # J'ai pris les couleurs standard sur Chess.com
+# PARAMETRES
+WHITE = (
+    240,
+    217,
+    181,
+)  # (Adam) J'ai modifié les couleurs noir et blanc, je pense q'il vaut mieux que ce soit les couleurs des pièces et pas de l'échiquier.
+BLACK = (121, 85, 61)  # J'ai pris les couleurs standard sur Chess.com
 BOARD_SIZE = 320
 CASE_SIZE = 40
 running = True
 
 # Je mets temporairement le contenu de affichage.py ici parce que j'ai des problèmes pour appeler les variables
 
-black_pawn = pg.image.load("media/noir_pion.png") # J'ai rajouté les pg.image.load, askip ça permet de convertir l'image en une surface utilisable par pygame
+black_pawn = pg.image.load(
+    "media/noir_pion.png"
+)  # J'ai rajouté les pg.image.load, askip ça permet de convertir l'image en une surface utilisable par pygame
 BLACK_PAWN = pg.transform.scale(black_pawn, (CASE_SIZE, CASE_SIZE))
 
 black_rook = pg.image.load("media/noir_tour.png")
@@ -29,7 +35,7 @@ black_queen = pg.image.load("media/noir_dame.png")
 BLACK_QUEEN = pg.transform.scale(black_queen, (CASE_SIZE, CASE_SIZE))
 
 black_king = pg.image.load("media/noir_roi.png")
-BLACK_KING = pg.transform.scale(black_king,(CASE_SIZE, CASE_SIZE))
+BLACK_KING = pg.transform.scale(black_king, (CASE_SIZE, CASE_SIZE))
 
 white_pawn = pg.image.load("media/blanc_pion.png")
 WHITE_PAWN = pg.transform.scale(white_pawn, (CASE_SIZE, CASE_SIZE))
@@ -56,20 +62,20 @@ clock = pg.time.Clock()
 
 screen.fill(WHITE)
 
-for i in range(CASE_SIZE,BOARD_SIZE,2*CASE_SIZE):
-    for j in range(0,BOARD_SIZE,2*CASE_SIZE) :
+for i in range(CASE_SIZE, BOARD_SIZE, 2 * CASE_SIZE):
+    for j in range(0, BOARD_SIZE, 2 * CASE_SIZE):
         # les coordonnées de rectangle que l'on dessine
-        x = i # coordonnée x (colonnes) en pixels
-        y = j # coordonnée y (lignes) en pixels
+        x = i  # coordonnée x (colonnes) en pixels
+        y = j  # coordonnée y (lignes) en pixels
         rect = pg.Rect(x, y, CASE_SIZE, CASE_SIZE)
         # appel à la méthode draw.rect()
         pg.draw.rect(screen, BLACK, rect)
 
-for i in range(0,BOARD_SIZE,2*CASE_SIZE): 
-    for j in range(CASE_SIZE,BOARD_SIZE,2*CASE_SIZE) :
+for i in range(0, BOARD_SIZE, 2 * CASE_SIZE):
+    for j in range(CASE_SIZE, BOARD_SIZE, 2 * CASE_SIZE):
         # les coordonnées de rectangle que l'on dessine
-        x = i # coordonnée x (colonnes) en pixels
-        y = j # coordonnée y (lignes) en pixels
+        x = i  # coordonnée x (colonnes) en pixels
+        y = j  # coordonnée y (lignes) en pixels
         rect = pg.Rect(x, y, CASE_SIZE, CASE_SIZE)
         # appel à la méthode draw.rect()
         pg.draw.rect(screen, BLACK, rect)
@@ -97,6 +103,31 @@ screen.blit(WHITE_BISHOP, (5 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 screen.blit(WHITE_KNIGHT, (6 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 screen.blit(WHITE_ROOK, (7 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 
+
+dico = {1 : BLACK_ROOK, 2 : BLACK_KNIGHT, 3 : BLACK_BISHOP, 4 : BLACK_QUEEN, 5 : BLACK_KING, 6 : BLACK_PAWN, 7 : WHITE_ROOK, 8 : WHITE_KNIGHT, 9 : WHITE_BISHOP, 10 : WHITE_QUEEN, 11 : WHITE_KING, 12 : WHITE_PAWN}
+p_c = np.zeros(8,8)
+p_c.[0][0]=1
+p_c.[0][1]=2
+p_c.[0][2]=3
+p_c.[0][3]=4
+p_c.[0][4]=5
+
+p_c.[1][0]=6
+p_c.[1][1]=6
+p_c.[1][2]=6
+p_c.[1][3]=6
+p_c.[1][4]=6
+p_c.[1][5]=6
+p_c.[1][6]=6
+p_c.[1][7]=6
+
+p_c.[0][6]=7
+p_c.[0][7]=8
+p_c.[0][0]=9
+
+
+
+
 while running:
     for event in pg.event.get():
         # chaque évênement à un type qui décrit la nature de l'évênement
@@ -108,6 +139,13 @@ while running:
             # si la touche est "Q" on veut quitter le programme
             if event.key == pg.K_q:
                 running = False
+        elif event.type == pg.MOUSEBUTTONDOWN:
+            (x, y) = event.pos
+            i, j = (
+                x // CASE_SIZE,
+                y // CASE_SIZE,
+            )  # il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
+            case_souhaitee = 
     pg.display.update()
 pg.quit()
 
