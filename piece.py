@@ -1,5 +1,9 @@
 from board import *
 
+
+L_b = []
+L_w = []
+
 class Position():
     
     def __init__(self, x, y):
@@ -28,7 +32,7 @@ class Piece():
             self.memory = "Didn't move yet"
         self.color = couleur
         self.position = position
-        self.statut = statut
+        self.statut = statut #pas utilisé dans le code
         # penser au statut d'être mangé ou pas et comment gérer le code
         # est-ce que on gère les effets de bord ? (pour la case souhaitée)
     def affichage(self):
@@ -67,7 +71,13 @@ class Piece():
                 return pos in {haut_droit, haut_gauche} and self.case_autorisee(case_souhaitee)
                     
             def prise_en_passant(case_souhaitee): 
-                pass
+                h,k = self.position
+                pos = Position(case_souhaitee.position)
+                if self.statut == "white" :
+                    return ((case_souhaitee.position==h-1,k-1) and p_c[h-1][k]==6) or (case_souhaitee.position==h+1,k-1) and p_c[h+1][k]==6
+                elif self.statut == "black":
+                    return ((case_souhaitee.position==h-1,k+1) and p_c[h-1][k]==12) or ((case_souhaitee.position==h+1,k+1) and p_c[h+1][k]==12)
+
 
             return avancer_pion(case_souhaitee) or avancer_2_pion(case_souhaitee) or manger_pion(case_souhaitee) or prise_en_passant(case_souhaitee) # Je teste si la case est autorisée dans toutes les sous-fonctions parce que certaines modifient l'état de self.memory
 
@@ -121,7 +131,9 @@ class Piece():
                     if case.statut != "empty":
                         boolean = False
                     return boolean
-
+            #elif case_souhaitee.position[1]==self.position[1]:
+            #    if self.statut == "Didn't move yet" and 
+            #je n'arrive pas à faire le roque
 
         if self.name == "queen":
 
@@ -162,14 +174,31 @@ class Piece():
             
     def case_autorisee(self, case_souhaitee): #case_souhaitee doit être de classe Case
         if case_souhaitee.statut == "empty":
-            return True
-        return case_souhaitee.statut != self.color
+            return True,"empty"
+        return case_souhaitee.statut != self.color,"nempty"
 
         
         
     def deplacement(self):
         if deplacement_autorise(case_souhaitee) and case_autorisee(case_souhaitee):
             self.position = Position(case_souhaitee.position)
+            h,k = case_souhaitee.position
+            n,m = self.position
+            if case_autorisee(case_souhaitee)[1] == "nempty":
+                w = p_c[h][k]
+                dico_p_n[case_souhaitee.name]
+                p_c[h][k] = p_c[n][m]       #on ajoute la pièce là où on veut la déplacer
+                p_c[n][m] = 0       #on la supprime de là où elle était
+                if self.color == "black":
+                    L_b.append(dico_n_p[w])
+                else : 
+                    L_w.append(dico_n_p[w])
+            else : 
+                p_c[h][k]=p_c[n][m]
+            pg.display.update()
+
+
+
 
         # Penser à redemander une case pour l'IA
 

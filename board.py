@@ -104,28 +104,45 @@ screen.blit(WHITE_KNIGHT, (6 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 screen.blit(WHITE_ROOK, (7 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 
 
-dico = {1 : BLACK_ROOK, 2 : BLACK_KNIGHT, 3 : BLACK_BISHOP, 4 : BLACK_QUEEN, 5 : BLACK_KING, 6 : BLACK_PAWN, 7 : WHITE_ROOK, 8 : WHITE_KNIGHT, 9 : WHITE_BISHOP, 10 : WHITE_QUEEN, 11 : WHITE_KING, 12 : WHITE_PAWN}
+dico_n_p = {1 : BLACK_ROOK, 2 : BLACK_KNIGHT, 3 : BLACK_BISHOP, 4 : BLACK_QUEEN, 5 : BLACK_KING, 6 : BLACK_PAWN, 7 : WHITE_ROOK, 8 : WHITE_KNIGHT, 9 : WHITE_BISHOP, 10 : WHITE_QUEEN, 11 : WHITE_KING, 12 : WHITE_PAWN}
+dico_p_n = {BLACK_ROOK : 1, BLACK_KNIGHT : 2, BLACK_BISHOP : 3, BLACK_QUEEN : 4, BLACK_KING : 5, BLACK_PAWN : 6, WHITE_ROOK : 7, WHITE_KNIGHT : 8, WHITE_BISHOP : 9, WHITE_QUEEN : 10, WHITE_KING : 11, WHITE_PAWN : 12}
+
 p_c = np.zeros(8,8)
-p_c.[0][0]=1
-p_c.[0][1]=2
-p_c.[0][2]=3
-p_c.[0][3]=4
-p_c.[0][4]=5
+p_c[0][0]=1
+p_c[1][0]=2
+p_c[2][0]=3
+p_c[3][0]=4
+p_c[4][0]=5
+p_c[5][0]=3
+p_c[6][0]=2
+p_c[7][0]=1
 
-p_c.[1][0]=6
-p_c.[1][1]=6
-p_c.[1][2]=6
-p_c.[1][3]=6
-p_c.[1][4]=6
-p_c.[1][5]=6
-p_c.[1][6]=6
-p_c.[1][7]=6
+p_c[0][1]=6
+p_c[1][1]=6
+p_c[2][1]=6
+p_c[3][1]=6
+p_c[4][1]=6
+p_c[5][1]=6
+p_c[6][1]=6
+p_c[7][1]=6
 
-p_c.[0][6]=7
-p_c.[0][7]=8
-p_c.[0][0]=9
+p_c[0][6]=12
+p_c[1][6]=12
+p_c[2][6]=12
+p_c[3][6]=12
+p_c[4][6]=12
+p_c[5][6]=12
+p_c[6][6]=12
+p_c[7][6]=12
 
-
+p_c[0][7]=7
+p_c[1][7]=8
+p_c[2][7]=9
+p_c[3][7]=10
+p_c[4][7]=11
+p_c[5][7]=9
+p_c[6][7]=8
+p_c[7][7]=7
 
 
 while running:
