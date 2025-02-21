@@ -26,13 +26,12 @@ class Case:
 
 class Piece():
 
-    def __init__(self, name, couleur, position,statut):
+    def __init__(self, name, couleur, position):
         self.name = name
         if self.name == "pawn" or self.name == "rook" or self.name == "king":
             self.memory = "Didn't move yet"
         self.color = couleur
         self.position = position
-        self.statut = statut #pas utilisé dans le code
         # penser au statut d'être mangé ou pas et comment gérer le code
         # est-ce que on gère les effets de bord ? (pour la case souhaitée)
     def affichage(self):

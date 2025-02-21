@@ -1,3 +1,4 @@
+import numpy as np
 from random import randint
 import pygame as pg  # J'ai créé un environnement conda avec python 3.11 pour importer pygame (je comprends rien aux environnements aled T_T)
 import collections
@@ -106,8 +107,11 @@ screen.blit(WHITE_ROOK, (7 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
 
 dico_n_p = {1 : BLACK_ROOK, 2 : BLACK_KNIGHT, 3 : BLACK_BISHOP, 4 : BLACK_QUEEN, 5 : BLACK_KING, 6 : BLACK_PAWN, 7 : WHITE_ROOK, 8 : WHITE_KNIGHT, 9 : WHITE_BISHOP, 10 : WHITE_QUEEN, 11 : WHITE_KING, 12 : WHITE_PAWN}
 dico_p_n = {BLACK_ROOK : 1, BLACK_KNIGHT : 2, BLACK_BISHOP : 3, BLACK_QUEEN : 4, BLACK_KING : 5, BLACK_PAWN : 6, WHITE_ROOK : 7, WHITE_KNIGHT : 8, WHITE_BISHOP : 9, WHITE_QUEEN : 10, WHITE_KING : 11, WHITE_PAWN : 12}
+dico_n_c = {1 : "black", 2 : "black", 3 : "black", 4 : "black", 5 : "black", 6 : "black", 7 : "white", 8 : "white", 9 : "white", 10 : "white", 11 : "white", 12 : "white"}
+dico_n_str = {1 : "rook", 2 : "knight", 3 : "bishop", 4 : "queen", 5 : "king", 6 : "pawn", 7 : "rook", 8 : "knight", 9 : "bishop", 10 : "queen", 11 : "king", 12 : "pawn"}
 
-p_c = np.zeros(8,8)
+
+p_c = np.zeros((8,8))
 p_c[0][0]=1
 p_c[1][0]=2
 p_c[2][0]=3
@@ -144,7 +148,6 @@ p_c[5][7]=9
 p_c[6][7]=8
 p_c[7][7]=7
 
-
 while running:
     for event in pg.event.get():
         # chaque évênement à un type qui décrit la nature de l'évênement
@@ -162,9 +165,10 @@ while running:
                 x // CASE_SIZE,
                 y // CASE_SIZE,
             )  # il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
-            case_souhaitee = 
     pg.display.update()
 pg.quit()
+
+
 
 
 """
