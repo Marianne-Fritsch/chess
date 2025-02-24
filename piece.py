@@ -13,10 +13,13 @@ class Position():
     def __add__(self, other):
         return Position(self.x + other.x, self.y + other.y)
     
+    def __repr__(self):
+        return(self.x,self.y)
+    
 class Case:
-    def __init__(self,position,statut):
+    def __init__(self,position) :#,statut):
         self.position = position #tuple (de 1 à 8, de 1 à 8)
-        self.statut = statut   #dans {"empty","black","white"}
+        #self.statut = statut   #dans {"empty","black","white"}
     
     def euhhhh():   #jsp si y a besoin d'une autre fonction enft
         pass
@@ -26,11 +29,11 @@ class Case:
 
 class Piece():
 
-    def __init__(self, name, couleur, position):
+    def __init__(self, name, color, position):
         self.name = name
         if self.name == "pawn" or self.name == "rook" or self.name == "king":
             self.memory = "Didn't move yet"
-        self.color = couleur
+        self.color = color
         self.position = position
         # penser au statut d'être mangé ou pas et comment gérer le code
         # est-ce que on gère les effets de bord ? (pour la case souhaitée)
@@ -126,10 +129,10 @@ class Piece():
                     return boolean
                 else : 
                     for k in range(1,abs(pos.x - self.position.x)):
-                    h,k = self.position + k * direction)
-                    if p_c[h][k]!=0:
-                        boolean = False
-                    return boolean
+                        n,m = self.position + k * direction
+                        if p_c[n][m]!=0:
+                            boolean = False
+                        return boolean
             #elif case_souhaitee.position[1]==self.position[1]:
             #    if self.statut == "Didn't move yet" and 
             #je n'arrive pas à faire le roque
@@ -153,16 +156,16 @@ class Piece():
                     boolean = True
                     if abs(pos.x - self.position.x) != 0:
                         for k in range(1,abs(pos.x - self.position.x)):
-                    case = Case(self.position + k * direction)
-                    if case.statut != "empty":
-                        boolean = False
-                    return boolean
+                            n,m = self.position + k * direction
+                            if p_c[n][m]!=0:
+                                    boolean = False
+                                    return boolean
                     else : 
                         for k in range(1,abs(pos.x - self.position.x)):
-                    case = Case(self.position + k * direction)
-                    if case.statut != "empty":
-                        boolean = False
-                    return boolean # Peut-être qu'on peut regrouper les fonctions pour rook, bishop et queen, la seule chose qui change c'est l'ensemble qu'on manipule
+                            n,m = self.position + k * direction
+                            if p_c[n][m]!=0:
+                                boolean = False
+                                return boolean # Peut-être qu'on peut regrouper les fonctions pour rook, bishop et queen, la seule chose qui change c'est l'ensemble qu'on manipule
 
         if self.name == "king":
 
@@ -172,14 +175,16 @@ class Piece():
                 pass # Le roi va être dur à coder, je propose de le faire vers la fin, parce qu'il faut prendre en compte le roque, le pat, les mises en échec, l'échec et mat.
             
     def case_autorisee(self, case_souhaitee): #case_souhaitee doit être de classe Case
-        if case_souhaitee.statut == "empty":
+        i,j = case_souhaitee.position 
+        if p_c[i][j]!=0:
             return True,"empty"
-        return case_souhaitee.statut != self.color,"nempty"
+        return dico_n_c[p_c[i][j]] != self.color,"nempty"
+
 
         
         
     def deplacement(self):
-        if deplacement_autorise(case_souhaitee) and case_autorisee(case_souhaitee):
+        if deplacement_autorise(case_souhaitee) and case_autorisee(case_souhaitee)[0]:
             self.position = Position(case_souhaitee.position)
             h,k = case_souhaitee.position
             n,m = self.position

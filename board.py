@@ -5,6 +5,10 @@ import collections
 from collections import namedtuple
 from collections import deque
 
+from piece import *
+from interface_utilisateur import * 
+from main import *
+
 # PARAMETRES
 WHITE = (
     240,
@@ -164,7 +168,8 @@ while running:
             i, j = (
                 x // CASE_SIZE,
                 y // CASE_SIZE,
-            )  # il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
+            )  
+            case_souhaitee = Case((i,j))# il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
     pg.display.update()
 pg.quit()
 

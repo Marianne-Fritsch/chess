@@ -5,6 +5,12 @@ from interface_utilisateur import *
 
 # on implémente ici la gestion du clic
 
+pg.init()
+screen = pg.display.set_mode((BOARD_SIZE, BOARD_SIZE))
+pg.display.set_caption("Chess")
+clock = pg.time.Clock()
+
+
 c = 0
 running = True
 
@@ -41,16 +47,15 @@ while running:
                     elif event.type == pg.MOUSEBUTTONDOWN:
                         (w, z) = event.pos
                         h, k = (
-                            x // CASE_SIZE,
-                            y // CASE_SIZE,
+                            w // CASE_SIZE,
+                            z // CASE_SIZE,
                         )  # il s'agit maintenant de la case voulue
                         couleur = dico_n_c[p_c[h][k]]
-                        case_souhaitee = Case((i, j), couleur)
+                        case_souhaitee = Case((i, j))
 
-                        deplacement_autorise(self, case_souhaitee)
-
-                        c += 1
-                        print(f"L_w = {L_w}, L_b = {L_b}")
-                        affichage(p_c)
+                        if piece.deplacement_autorise(case_souhaitee) :
+                            c += 1
+                            print(f"L_w = {L_w}, L_b = {L_b}")
+                            affichage(p_c)
     pg.display.update()
 pg.quit()
