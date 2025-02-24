@@ -5,11 +5,8 @@ import collections
 from collections import namedtuple
 from collections import deque
 
-from piece import *
-from interface_utilisateur import * 
-from main import *
 
-# PARAMETRES
+
 WHITE = (
     240,
     217,
@@ -19,6 +16,9 @@ BLACK = (121, 85, 61)  # J'ai pris les couleurs standard sur Chess.com
 BOARD_SIZE = 320
 CASE_SIZE = 40
 running = True
+
+
+
 
 # Je mets temporairement le contenu de affichage.py ici parce que j'ai des problèmes pour appeler les variables
 
@@ -61,12 +61,12 @@ white_king = pg.image.load("media/blanc_roi.png")
 WHITE_KING = pg.transform.scale(white_king, (CASE_SIZE, CASE_SIZE))
 
 pg.init()
-screen = pg.display.set_mode((BOARD_SIZE, BOARD_SIZE))
+SCREEN = pg.display.set_mode((BOARD_SIZE, BOARD_SIZE))
 pg.display.set_caption("Chess")
-clock = pg.time.Clock()
+#clock = pg.time.Clock()
 
-screen.fill(WHITE)
-
+#screen.fill(WHITE)
+"""
 for i in range(CASE_SIZE, BOARD_SIZE, 2 * CASE_SIZE):
     for j in range(0, BOARD_SIZE, 2 * CASE_SIZE):
         # les coordonnées de rectangle que l'on dessine
@@ -85,28 +85,30 @@ for i in range(0, BOARD_SIZE, 2 * CASE_SIZE):
         # appel à la méthode draw.rect()
         pg.draw.rect(screen, BLACK, rect)
 
-for i in range(0, BOARD_SIZE, CASE_SIZE):
-    screen.blit(WHITE_PAWN, (i, BOARD_SIZE - 2 * CASE_SIZE))
-for i in range(0, BOARD_SIZE, CASE_SIZE):
-    screen.blit(BLACK_PAWN, (i, CASE_SIZE))
+#for i in range(0, BOARD_SIZE, CASE_SIZE):
+#    screen.blit(WHITE_PAWN, (i, BOARD_SIZE - 2 * CASE_SIZE))
+#for i in range(0, BOARD_SIZE, CASE_SIZE):
+#    screen.blit(BLACK_PAWN, (i, CASE_SIZE))
 
-screen.blit(BLACK_ROOK, (0, 0))
-screen.blit(BLACK_KNIGHT, (CASE_SIZE, 0))
-screen.blit(BLACK_BISHOP, (2 * CASE_SIZE, 0))
-screen.blit(BLACK_QUEEN, (3 * CASE_SIZE, 0))
-screen.blit(BLACK_KING, (4 * CASE_SIZE, 0))
-screen.blit(BLACK_BISHOP, (5 * CASE_SIZE, 0))
-screen.blit(BLACK_KNIGHT, (6 * CASE_SIZE, 0))
-screen.blit(BLACK_ROOK, (7 * CASE_SIZE, 0))
+#screen.blit(BLACK_ROOK, (0, 0))
+#screen.blit(BLACK_KNIGHT, (CASE_SIZE, 0))
+#screen.blit(BLACK_BISHOP, (2 * CASE_SIZE, 0))
+#screen.blit(BLACK_QUEEN, (3 * CASE_SIZE, 0))
+#screen.blit(BLACK_KING, (4 * CASE_SIZE, 0))
+#screen.blit(BLACK_BISHOP, (5 * CASE_SIZE, 0))
+#screen.blit(BLACK_KNIGHT, (6 * CASE_SIZE, 0))
+#screen.blit(BLACK_ROOK, (7 * CASE_SIZE, 0))
 
-screen.blit(WHITE_ROOK, (0, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_KNIGHT, (CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_BISHOP, (2 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_QUEEN, (3 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_KING, (4 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_BISHOP, (5 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_KNIGHT, (6 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
-screen.blit(WHITE_ROOK, (7 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_ROOK, (0, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_KNIGHT, (CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_BISHOP, (2 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_QUEEN, (3 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_KING, (4 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_BISHOP, (5 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_KNIGHT, (6 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+#screen.blit(WHITE_ROOK, (7 * CASE_SIZE, BOARD_SIZE - CASE_SIZE))
+
+"""
 
 
 dico_n_p = {1 : BLACK_ROOK, 2 : BLACK_KNIGHT, 3 : BLACK_BISHOP, 4 : BLACK_QUEEN, 5 : BLACK_KING, 6 : BLACK_PAWN, 7 : WHITE_ROOK, 8 : WHITE_KNIGHT, 9 : WHITE_BISHOP, 10 : WHITE_QUEEN, 11 : WHITE_KING, 12 : WHITE_PAWN}
@@ -152,26 +154,26 @@ p_c[5][7]=9
 p_c[6][7]=8
 p_c[7][7]=7
 
-while running:
-    for event in pg.event.get():
-        # chaque évênement à un type qui décrit la nature de l'évênement
-        # un type de pg.QUIT signifie que l'on a cliqué sur la "croix" de la fenêtre
-        if event.type == pg.QUIT:
-            running = False
-        # un type de pg.KEYDOWN signifie que l'on a appuyé une touche du clavier
-        elif event.type == pg.KEYDOWN:
-            # si la touche est "Q" on veut quitter le programme
-            if event.key == pg.K_q:
-                running = False
-        elif event.type == pg.MOUSEBUTTONDOWN:
-            (x, y) = event.pos
-            i, j = (
-                x // CASE_SIZE,
-                y // CASE_SIZE,
-            )  
-            case_souhaitee = Case((i,j))# il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
-    pg.display.update()
-pg.quit()
+#while running:
+#    for event in pg.event.get():
+#        # chaque évênement à un type qui décrit la nature de l'évênement
+#        # un type de pg.QUIT signifie que l'on a cliqué sur la "croix" de la fenêtre
+#        if event.type == pg.QUIT:
+#            running = False
+#        # un type de pg.KEYDOWN signifie que l'on a appuyé une touche du clavier
+#        elif event.type == pg.KEYDOWN:
+#            # si la touche est "Q" on veut quitter le programme
+#            if event.key == pg.K_q:
+#                running = False
+#        elif event.type == pg.MOUSEBUTTONDOWN:
+#            (x, y) = event.pos
+#            i, j = (
+#                x // CASE_SIZE,
+#                y // CASE_SIZE,
+#            )  
+#            case_souhaitee = Case((i,j))# il s'agit de la case souhaitée (où i est compté horizontalement et j verticalement)
+#    pg.display.update()
+#pg.quit()
 
 
 

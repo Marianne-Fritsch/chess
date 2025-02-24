@@ -1,0 +1,14 @@
+Système de double clique !!
+
+On clique d'abord sur une pièce à nous, ça nous récupère les données de la pièce concernée
+Puis on s'intéresse à la case sur laquelle on va la placer
+Quand on clique sur la case, on cherche si elle est autorisée, puis :
+    - si elle ne l'est pas, on ne fait rien (on envoie un message d'erreur ?)
+    - si elle l'est et qu'elle est vide, on bouge la pièce dans la case cliquée
+    - si elle l'est et qu'elle est occupée par une pièce de l'autre couleur, on déplace la pièce et on enlève l'autre en modifiant son statut
+    - on modifie le tableau qui recense les positions des éléments du dico
+
+On met un compteur qui s'incrémente à chaque tour, et quand c'est impair c'est aux blancs de jouer, quand c'est pair c'est aux noirs.
+
+
+
