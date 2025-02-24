@@ -16,7 +16,7 @@ class Position():
 class Case:
     def __init__(self,position,statut):
         self.position = position #tuple (de 1 à 8, de 1 à 8)
-        self.statut = statut   #booléen 
+        self.statut = statut   #dans {"empty","black","white"}
     
     def euhhhh():   #jsp si y a besoin d'une autre fonction enft
         pass
@@ -94,8 +94,8 @@ class Piece():
                 direction = vect_unit(pos, self.position)
                 boolean = True
                 for k in range(1,abs(pos.x - self.position.x)):
-                    case = Case(self.position + k * direction)
-                    if case.statut != "empty":
+                    h,k = self.position + k * direction
+                    if p_c[h][k] != 0:
                         boolean = False
                 return boolean
 
@@ -120,14 +120,14 @@ class Piece():
                 boolean = True
                 if abs(pos.x - self.position.x) != 0:
                     for k in range(1,abs(pos.x - self.position.x)):
-                    case = Case(self.position + k * direction)
-                    if case.statut != "empty":
+                        h,k=self.position + k * direction
+                    if p_c[h][k] != 0:
                         boolean = False
                     return boolean
                 else : 
                     for k in range(1,abs(pos.x - self.position.x)):
-                    case = Case(self.position + k * direction)
-                    if case.statut != "empty":
+                    h,k = self.position + k * direction)
+                    if p_c[h][k]!=0:
                         boolean = False
                     return boolean
             #elif case_souhaitee.position[1]==self.position[1]:
@@ -154,7 +154,7 @@ class Piece():
                     if abs(pos.x - self.position.x) != 0:
                         for k in range(1,abs(pos.x - self.position.x)):
                     case = Case(self.position + k * direction)
-                    if case.statut != "emty":
+                    if case.statut != "empty":
                         boolean = False
                     return boolean
                     else : 

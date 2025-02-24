@@ -1,13 +1,16 @@
 from board import *
 from piece import *
+from interface_utilisateur import *
+
 
 # on implémente ici la gestion du clic
 
 c = 0
+running = True
 
 while running:
     for event in pg.event.get():
-        # chaque évênement à un type qui décrit la nature de l'évênement
+        # chaque événement à un type qui décrit la nature de l'événement
         # un type de pg.QUIT signifie que l'on a cliqué sur la "croix" de la fenêtre
         if event.type == pg.QUIT:
             running = False
@@ -18,6 +21,7 @@ while running:
                 running = False
         elif event.type == pg.MOUSEBUTTONDOWN:
             (x, y) = event.pos
+            print("huhu")
             i, j = (
                 x // CASE_SIZE,
                 y // CASE_SIZE,

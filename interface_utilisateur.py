@@ -1,4 +1,4 @@
-#Ceci est l'interface utilisateur
+#Ceci n'est pas l'interface utilisateur
 from random import randint
 import pygame as pg 
 import collections
