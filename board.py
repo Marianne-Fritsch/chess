@@ -117,7 +117,7 @@ dico_n_c = {1 : "black", 2 : "black", 3 : "black", 4 : "black", 5 : "black", 6 :
 dico_n_str = {1 : "rook", 2 : "knight", 3 : "bishop", 4 : "queen", 5 : "king", 6 : "pawn", 7 : "rook", 8 : "knight", 9 : "bishop", 10 : "queen", 11 : "king", 12 : "pawn"}
 
 
-p_c = np.zeros((8,8))
+"""p_c = np.zeros((8,8))
 p_c[0][0]=1
 p_c[1][0]=2
 p_c[2][0]=3
@@ -152,7 +152,7 @@ p_c[3][7]=10
 p_c[4][7]=11
 p_c[5][7]=9
 p_c[6][7]=8
-p_c[7][7]=7
+p_c[7][7]=7"""
 
 #while running:
 #    for event in pg.event.get():

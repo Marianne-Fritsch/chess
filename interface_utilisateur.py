@@ -17,16 +17,13 @@ WHITE = (
 BLACK = (121, 85, 61)  # J'ai pris les couleurs standard sur Chess.com
 BOARD_SIZE = 320
 CASE_SIZE = 40
-running = True
 
 
 def affichage(tab, screen):
     # screen = pg.display.set_mode((BOARD_SIZE, BOARD_SIZE))
     pg.display.set_caption("Chess")
-    clock = pg.time.Clock()
 
     screen.fill(WHITE)
-    print("piche")
 
     for i in range(CASE_SIZE, BOARD_SIZE, 2 * CASE_SIZE):
         for j in range(0, BOARD_SIZE, 2 * CASE_SIZE):
@@ -77,6 +74,8 @@ def affichage(tab, screen):
         screen.blit(WHITE_PAWN, (i, BOARD_SIZE - 2 * CASE_SIZE))
     for i in range(0, BOARD_SIZE, CASE_SIZE):
         screen.blit(BLACK_PAWN, (i, CASE_SIZE))
+
+    pg.display.update()
 
 
 #    screen.blit(BLACK_ROOK, (0, 0))
